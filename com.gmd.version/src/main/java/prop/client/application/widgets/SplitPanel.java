@@ -15,6 +15,8 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.Event;
+import com.google.gwt.user.client.EventListener;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -56,6 +58,8 @@ public class SplitPanel extends Composite implements HasText {
     ContentWidget contentWidget;
     
     HandlerRegistration clickHandler;
+
+    private com.google.gwt.user.client.Element element;
     
     public SplitPanel(String firstName) {
         initWidget(uiBinder.createAndBindUi(this));
@@ -95,13 +99,30 @@ public class SplitPanel extends Composite implements HasText {
        List<NodeList<Node>> list=stream.map(el->el.getChildNodes()).collect(Collectors.toList());
        MaterialToast.fireToast("exp "+splPanel.getBarPosition());
 //       Window.alert(list.toString());
-       splPanel.reload();
+//       splPanel.reload();
+       Event.setEventListener(element, null);
+       
+       
     }
 
     @UiHandler("hideLeftZone")
     void hideLeftPanel(ClickEvent e) {
-        Element element=splPanel.getElement();
+         element=splPanel.getElement();
         element.getChild(0).appendChild(DOM.createButton());
+        Event.sinkEvents(element, Event.ONCLICK);
+        Event.setEventListener(element, new EventListener() {
+            
+            @Override
+            public void onBrowserEvent(Event event) {
+                if(event.ONCLICK==event.getTypeInt())
+                    splPanel.setBarPosition(50);
+                splPanel.reload();
+               MaterialToast.fireToast("WE added Handler");
+            }
+        });
+        
+        Button.wrap(element);
+        
         GWT.log(""+element.getChild(0).getNodeName());
         GWT.log("kak ec");
 
