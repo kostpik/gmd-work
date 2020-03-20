@@ -1,0 +1,7 @@
+eclipse.preferences.version=1
+gwtMavenModuleName=prop.module
+gwtMavenModuleShortName=module
+jarsExcludedFromWebInfLib=
+lastWarOutDir=/home/konstantin/com.gmd.version/target/com.gmd.version-1.0-SNAPSHOT
+warSrcDir=src/main/webapp
+warSrcDirIsOutput=false

@@ -1,0 +1,28 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:ma="urn:import:gwt.material.design.addins.client"
+	xmlns:m="urn:import:gwt.material.design.client.ui"
+	xmlns:w="urn:import:prop.client.application.widgets">
+	<ui:style>
+	.important {
+		font-weight: bold;
+	}
+	</ui:style>
+	
+	<g:HTMLPanel ui:field="htmlPanel" >
+		<ma:splitpanel.MaterialSplitPanel ui:field="splPanel" barPosition="30" height="400px" width="1000px">
+		  <m:MaterialPanel ui:field ="left" grid="l6 m6 s6" padding="0" backgroundColor="GREY_LIGHTEN_2">
+		    <m:MaterialTitle textAlign="CENTER"  title="Left Zone" description="Content must be added here"/>
+		    <w:ContentWidget ui:field="contentWidget"></w:ContentWidget>
+		  </m:MaterialPanel>
+		  <m:MaterialPanel ui:field ="rigth" grid="l6 m6 s6" padding="0" backgroundColor="GREY_LIGHTEN_3">
+		    <m:MaterialTitle textAlign="CENTER" title="Right Zone" description="Content must be added here"/>
+		  </m:MaterialPanel>
+	   </ma:splitpanel.MaterialSplitPanel>
+		  <m:MaterialButton ui:field="buttonHideAndShow" size="MEDIUM" text="Hide splitpanel"/>
+		  <m:MaterialButton ui:field="experiment" size="MEDIUM" text="Experiment"/>
+		  <m:MaterialButton ui:field="experiment2" size="MEDIUM" text="Experiment2"/>
+	<m:MaterialButton ui:field="hideLeftZone" size="MEDIUM" text="hide LeftZone"/>
+		</g:HTMLPanel>
+</ui:UiBinder> 
