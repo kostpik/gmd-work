@@ -103,6 +103,7 @@ public class SplitPanel extends Composite implements HasText {
         Element element=splPanel.getElement();
         element.getChild(0).appendChild(DOM.createButton());
         GWT.log(""+element.getChild(0).getNodeName());
+        GWT.log("kak ec");
 
 // 
 //        MaterialToast.fireToast(""+splPanel.getBarPosition()*100);
