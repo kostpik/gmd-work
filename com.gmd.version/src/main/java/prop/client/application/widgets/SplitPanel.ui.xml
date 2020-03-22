@@ -11,7 +11,7 @@
 	</ui:style>
 	
 	<g:HTMLPanel ui:field="htmlPanel" >
-		<ma:splitpanel.MaterialSplitPanel ui:field="splPanel" barPosition="30" height="400px" width="1000px">
+		<ma:splitpanel.MaterialSplitPanel ui:field="splPanel" barPosition="0" height="400px" width="1000px">
 		  <m:MaterialPanel ui:field ="left" grid="l6 m6 s6" padding="0" backgroundColor="GREY_LIGHTEN_2">
 		    <m:MaterialTitle textAlign="CENTER"  title="Left Zone" description="Content must be added here"/>
 		    <w:ContentWidget ui:field="contentWidget"></w:ContentWidget>

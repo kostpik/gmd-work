@@ -59,14 +59,14 @@ public class SplitPanel extends Composite implements HasText {
     
     HandlerRegistration clickHandler;
 
-    private com.google.gwt.user.client.Element element;
+    private Element butSplit;
     
     public SplitPanel(String firstName) {
         initWidget(uiBinder.createAndBindUi(this));
         buttonHideAndShow.setText(firstName);
         splPanel.add(createHTMLPanel());
         splPanel.add(createButton());
-        clickBut(null);
+//        clickBut(null);
         
     }
 //    @UiHandler("splPanel")
@@ -84,46 +84,60 @@ public class SplitPanel extends Composite implements HasText {
     
     public void clickBut(ClickEvent event) {
             MaterialToast.fireToast("clickBut");
-            JQueryElement element=splPanel.$this().find("div + div > div").click();
+//            JQueryElement element=splPanel.$this().find("div + div > div").click();
+            JQueryElement eleme=splPanel.$this().find("div + div > div").unbind();
+//            element=splPanel.$this().find("div + div > div").bind(Event.ONCLICK);
             
             splPanel.setBarPosition(80);
             splPanel.reload();
     }
     
     
+    /**
+     * @param e
+     */
     @UiHandler("experiment2")
     void onClick(ClickEvent e) {
         Stream<Element> stream=Arrays.stream(splPanel.$this().get());
-      
+//        JQueryElement elem = splPanel.$this().find("div + div > div").unbind("click");
+         butSplit.setId("but");
+        
 //       splPanel.$this().click();
-       List<NodeList<Node>> list=stream.map(el->el.getChildNodes()).collect(Collectors.toList());
+//       List<NodeList<Node>> list=stream.map(el->el.getChildNodes()).collect(Collectors.toList());
        MaterialToast.fireToast("exp "+splPanel.getBarPosition());
 //       Window.alert(list.toString());
 //       splPanel.reload();
-       Event.setEventListener(element, null);
+//       Event.setEventListener(butSplit, null);
        
        
     }
 
     @UiHandler("hideLeftZone")
     void hideLeftPanel(ClickEvent e) {
-         element=splPanel.getElement();
-        element.getChild(0).appendChild(DOM.createButton());
-        Event.sinkEvents(element, Event.ONCLICK);
-        Event.setEventListener(element, new EventListener() {
+         butSplit=splPanel.getElement();
+//        butSplit.getChild(1).appendChild(DOM.createButton());
+        Element targetElement = butSplit.getFirstChildElement().getNextSiblingElement();
+       MaterialToast.fireToast(butSplit.getFirstChildElement().getNextSiblingElement().getDir());
+        Event.sinkEvents(targetElement, Event.ONCLICK);
+        
+        Event.setEventListener(targetElement, new EventListener() {
             
             @Override
             public void onBrowserEvent(Event event) {
+//            	MaterialToast.fireToast(event.getType());
                 if(event.ONCLICK==event.getTypeInt())
+                	
+                	event.preventDefault();
                     splPanel.setBarPosition(50);
                 splPanel.reload();
+                event.stopPropagation();
                MaterialToast.fireToast("WE added Handler");
             }
         });
         
-        Button.wrap(element);
+        Button.wrap(butSplit);
         
-        GWT.log(""+element.getChild(0).getNodeName());
+        GWT.log(""+butSplit.getChild(0).getNodeName());
         GWT.log("kak ec");
 
 // 
